@@ -11,5 +11,13 @@ namespace Ratstaurant.Models
         public virtual Cuisine Cuisine {get; set;}
         public int Rat {get; set;}
         public int Price {get; set;}
+        public virtual ICollection<Review> Reviews { get; set; }
+
+        public Restaurant()
+        {
+            this.Reviews = new HashSet<Review>();
+        }
     }
+
+    
 }

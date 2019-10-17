@@ -102,6 +102,12 @@ namespace Ratstaurant.Controllers
             return RedirectToAction("Index");
         }
 
+        // public ActionResult Review()
+        // {
+        //     ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
+        //     return View();
+        // }
+
         
     }
 }

@@ -1,0 +1,24 @@
+@{
+  Layout = "_Layout";
+}
+<canvas id="myCanvas" width=1024 height=1024 style="border:1px solid #d3d3d3"></canvas>
+<p>We got rats!</p>
+    <script>
+
+        var width = 0;
+        var height = 0;
+        var c = document.getElementById('myCanvas');
+        console.log(c);
+        var ctx = c.getContext("2d");
+
+        
+        function draw() {
+            ctx.beginPath();
+            ctx.fillRect(20, 20, 64, 64);
+            ctx.stroke();
+            
+        }
+
+        draw();
+
+    </script>

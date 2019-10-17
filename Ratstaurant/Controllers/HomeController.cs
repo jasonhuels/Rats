@@ -32,5 +32,11 @@ namespace Ratstaurant.Controllers
             Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurants => restaurants.Name == search);
             return View("Search", thisRestaurant);
         }
+
+        [HttpGet("/Rat")]
+        public ActionResult Rat()
+        {
+            return View();
+        }
     }
 }
