@@ -39,6 +39,7 @@ namespace Ratstaurant.Controllers
 
         public ActionResult Details(int id)
         {
+            List<Restaurant> model = _db.Restaurants.Include(restaurants => restaurants.Cuisine).ToList();
             Cuisine thisCuisine = _db.Cuisine.FirstOrDefault(cuisine => cuisine.ID == id);
             return View(thisCuisine);
         }

@@ -8,6 +8,6 @@ namespace Ratstaurant.Models
         public string User {get; set;}
         public int RestaurantID {get; set;}
         public virtual Restaurant Restaurant {get; set;}
-        public long Critique {get; set;}
+        public string Critique {get; set;}
     }
 }

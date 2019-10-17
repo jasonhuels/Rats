@@ -4,10 +4,11 @@
 }
 
 @using Ratstaurant.Models;
+@using System.Linq;
 @model Ratstaurant.Models.Restaurant
 
 <h2>Animal Details</h2>
-<hr />
+<hr/>
 <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
 <h3>@Html.DisplayNameFor(model => model.Address): @Html.DisplayFor(model => model.Address)</h3>
 <h3>@Html.DisplayNameFor(model => model.Rat): @Html.DisplayFor(model => model.Rat)</h3>
@@ -50,7 +51,7 @@ OOO
   `"OOOOOOOOOOOOoooooooo.</pre>
 
 <!-- Trigger/Open The Modal -->
-<button id="myBtn">Write a Review</button>
+<button id="myBtn">Rat a Review</button>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -59,21 +60,31 @@ OOO
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-
-     @using (Html.BeginForm())
-      {
-        @*
-          @Html.LabelFor(model => model.User)
-          @Html.TextBoxFor(model => model.User)
-          @Html.LabelFor(model => model.Critique)
-          @Html.TextBoxFor(model => model.Critique)
-          *@
-
-          <input type="submit" value="Submit Review"/>
-      }
+    <form action="/restaurants/Details" method="post">
+      <input id="RestaurantID" name="RestaurantID" type="hidden" value="@Model.ID">
+      <label for="User">Name:</label>
+      <input id="User" name="User" type="text" required>
+      <label for="Critique">Critique:</label>
+      <input id="Critique" name="Critique" type="text" required>
+      <button type="submit">Submit</button>
+    </form>
   </div>
 
 </div>
+
+@if (@Model.Reviews.Count == 0)
+{
+    <h3>No rats!</h3>
+} 
+
+@foreach (Review review in @Model.Reviews)
+{
+    <div class="well">
+      <h5>@review.User</h5>
+      <p>@review.Critique</p>
+    </div>
+    
+}
 
 <script>
 // Get the modal

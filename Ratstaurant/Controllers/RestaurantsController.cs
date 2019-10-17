@@ -68,8 +68,21 @@ namespace Ratstaurant.Controllers
 
         public ActionResult Details(int id)
         {
+            List<Review> model = _db.Reviews.Include(reviews => reviews.Restaurant).ToList();
             Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurants => restaurants.ID == id);
             return View(thisRestaurant);
+        }
+
+        [HttpPost]
+        public ActionResult Details(Review review)
+        {
+            int id = review.RestaurantID;
+            string url = $"Details/{id}";
+            Console.WriteLine(url);
+             _db.Reviews.Add(review);
+            _db.SaveChanges();
+            return RedirectToAction("Details", new {id});
+            //return View(url);
         }
 
         public ActionResult Edit(int id)
@@ -102,10 +115,11 @@ namespace Ratstaurant.Controllers
             return RedirectToAction("Index");
         }
 
-        // public ActionResult Review()
+        // public ActionResult Review(Review review)
         // {
-        //     ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
-        //     return View();
+        //      _db.Reviews.Add(review);
+        //     _db.SaveChanges();
+        //     return RedirectToAction($"Details/{review.RestaurantID}");
         // }
 
         
